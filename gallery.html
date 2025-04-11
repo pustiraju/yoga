@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <title>Yoga Samadhan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Masonry Grid */
+      .masonry-grid {
+        column-count: 1;
+        column-gap: 1rem;
+      }
+      @media (min-width: 640px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+      @media (min-width: 1024px) {
+        .masonry-grid {
+          column-count: 3;
+        }
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+      }
+      .masonry-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .masonry-item img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+  <nav class="bg-yellow-500 fixed w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex flex-shrink-0">
+          <a href="#" class="text-gray-800 text-2xl font-bold md:mt-[3px]"><img src="/images/logo.png" alt="" /></a>
+          <h3 class="px-3 py-3 font-bold md:text-2xl">Yoga Samadhan</h3>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-center space-x-4">
+            <a href="/index.html"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+            <a href="/about.html"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+            <a href="/courses.html"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Courses</a>
+            <a href="/gallery.html"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Gallery</a>
+            <a href="/contact.html"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+            <a href="/login.html"
+              class="bg-gray-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-900 transition-colors">Login</a>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button type="button" id="mobileMenuButton"
+            class="text-gray-800 hover:bg-yellow-600 inline-flex items-center justify-center p-2 rounded-md focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="md:hidden hidden" id="mobileMenu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="/index.html"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="/about.html"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+        <a href="/courses.html"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Courses</a>
+        <a href="/gallery.html"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+        <a href="/contact.html"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        <a href="/login.html"
+          class="bg-gray-800 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900 transition-colors">Login</a>
+      </div>
+    </div>
+  </nav>
+
+   <!-- Gallery Section -->
+    <section class="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-100 to-gray-200">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">
+          Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500">Gallery</span>
+        </h1>
+        <p class="text-lg text-gray-600 text-center mb-12">
+          Explore moments from our yoga sessions, physiotherapy workshops, teacher training programs, and wellness events.
+        </p>
+
+        <!-- Masonry Grid -->
+        <div class="masonry-grid">
+          <div class="masonry-item">
+            <img src="/images/1.jpg" alt="Yoga Session" class="rounded-lg cursor-pointer" data-lightbox loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="/images/2.jpg" alt="Physiotherapy Workshop" class="rounded-lg cursor-pointer" data-lightbox loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="/images/3.jpg" alt="Teacher Training" class="rounded-lg cursor-pointer" data-lightbox loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="/images/4.jpg" alt="Meditation Event" class="rounded-lg cursor-pointer" data-lightbox loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="/images/5.jpg" alt="Group Yoga" class="rounded-lg cursor-pointer" data-lightbox loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <span class="lightbox-close">×</span>
+      <img src="/images/7.jpg" alt="Lightbox Image" id="lightbox-image" />
+    </div>
+
+
+    
+
+
+
+
+
+   <footer class="bg-yellow-500 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+               
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center mb-4">
+                        <a href="#" class="text-gray-800 text-2xl font-bold"><img src="/images/logo.png" alt="Yoga Samadhan Logo" class="h-10 w-auto" /></a>
+                        <h3 class="px-3 font-bold text-xl text-gray-800">Yoga Samadhan</h3>
+                    </div>
+                    <p class="text-gray-800 text-sm text-center md:text-left">
+                        Experience holistic wellness through our integrated approach combining yoga treatment, physiotherapy, wellness courses, and certified teacher training. Our programs support physical healing, mental clarity, and inner peace.
+                    </p>
+                </div>
+
+              
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="text-gray-800 font-bold text-lg mb-4">Quick Links</h4>
+                    <a href="/index.html" class="text-gray-800 hover:text-white transition-colors mb-2">Home</a>
+                    <a href="/about.html" class="text-gray-800 hover:text-white transition-colors mb-2">About</a>
+                    <a href="/courses.html" class="text-gray-800 hover:text-white transition-colors mb-2">Courses</a>
+                    <a href="/gallery.html" class="text-gray-800 hover:text-white transition-colors mb-2">Gallery</a>
+                    <a href="/contact.html" class="text-gray-800 hover:text-white transition-colors">Contact</a>
+                </div>
+
+               
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="text-gray-800 font-bold text-lg mb-4">Contact Us</h4>
+                    <p class="text-gray-800 text-sm mb-2">Email: info@yogasamadhan.com</p>
+                    <p class="text-gray-800 text-sm mb-2">Phone: +919733041744</p>
+                   <p class="text-gray-800 text-sm">
+              <b class="text-cyan-700">Tollygunge Center:</b> 11A/1 B.L. Ganguli
+              Lane, 33, Tollygunge, Kolkata, West Bengal 700033.
+            </p>
+                    <p class="text-gray-800 text-sm">
+              <b class="text-cyan-700">Midnapore Center:</b> Midnapore Railway
+              Station Rd, Bhunia Para, Kotwali, Midnapore, West Bengal 721102
+            </p>
+                </div>
+            </div>
+
+         
+            <div class="mt-8 pt-8 border-t border-yellow-600 text-center">
+                <p class="text-gray-800 text-sm">
+                    © 2025 Yoga Samadhan. All rights reserved.
+                </p>
+                <p class="text-gray-800 text-sm mt-2">
+                    Designed & Developed by <a href="#" class="hover:text-white transition-colors">Raju Pusti</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+     <script>
+     
+
+      // Lightbox Functionality
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxClose = document.querySelector('.lightbox-close');
+      const galleryImages = document.querySelectorAll('[data-lightbox]');
+
+      galleryImages.forEach((img) => {
+        img.addEventListener('click', () => {
+          lightboxImage.src = img.src;
+          lightbox.classList.add('active');
+        });
+      });
+
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+        }
+      });
+    </script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
