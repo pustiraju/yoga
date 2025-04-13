@@ -14,20 +14,20 @@ form.addEventListener("submit", function (e) {
 
   fetch("https://script.google.com/macros/s/AKfycbzUPeSBAZ9rbZG60hqPN0nrQiNJ-IatDZaXJVYtcOh7lin-7iou6Emq5U_4soLWqwalBw/exec", {
     method: "POST",
+    mode: "no-cors", // bypasses CORS, but disables response handling
     body: JSON.stringify(formData),
     headers: {
       "Content-Type": "application/json"
     }
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Success:", data);
-    alert("Message sent successfully!");
+  .then(() => {
+    alert("Message sent (CORS bypassed, no response available).");
     form.reset();
   })
   .catch(error => {
     console.error("Error:", error);
     alert("Something went wrong. Please try again.");
   });
+  
 });
 
