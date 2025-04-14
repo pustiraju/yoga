@@ -1,34 +1,44 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("enrollmentForm");
+  const successMessage = document.getElementById("successMessage");
 
-const form = document.getElementById("enrollmentForm");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  console.log(form);
-//   const formData = {
-//     name: form.name.value,
-//     email: form.email.value,
-//     message: form.message.value,
-//   };
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      occupation: form.occupation.value,
+      qualification: form.qualification.value,
+    };
+    console.log(`Form Data:`, formData);
+    
 
-  
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxG0rNxEK2HGWhDOiXLYNJpcmWSIkDYzJae_V3jgFtH8pBj8S8mwFbhZY8TRfPZBrQkJQ/exec", // 👈 replace with your endpoint
+        {
+          method: "POST",
+          mode: "no-cors", // 👈 no-cors mode for cross-origin requests
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-//   fetch("https://script.google.com/macros/s/AKfycbzUPeSBAZ9rbZG60hqPN0nrQiNJ-IatDZaXJVYtcOh7lin-7iou6Emq5U_4soLWqwalBw/exec", {
-//     method: "POST",
-//     mode: "no-cors", // bypasses CORS, but disables response handling
-//     body: JSON.stringify(formData),
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   })
-//   .then((res) => {
-//    alert("Message Sent Sucessfully")
-   
-//     form.reset();
-//   })
-//   .catch(error => {
-//     console.error("Error:", error);
-//     alert("Something went wrong. Please try again.");
-//   });
-  
+      // Since no-cors mode returns opaque response, we'll assume success
+      form.reset();
+      successMessage.classList.remove("hidden");
+
+      // Optional: Hide message after a few seconds
+      setTimeout(() => {
+        successMessage.classList.add("hidden");
+      }, 5000);
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("Something went wrong. Please try again later.");
+    }
+  });
 });
-
