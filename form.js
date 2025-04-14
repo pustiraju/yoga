@@ -20,8 +20,8 @@ form.addEventListener("submit", function (e) {
       "Content-Type": "application/json"
     }
   })
-  .then(() => {
-    alert("Message sent (CORS bypassed, no response available).");
+  .then((res) => {
+    alert(res);
     form.reset();
   })
   .catch(error => {
