@@ -21,7 +21,8 @@ form.addEventListener("submit", function (e) {
     }
   })
   .then((res) => {
-    alert(res);
+   alert("Message Sent Sucessfully")
+   
     form.reset();
   })
   .catch(error => {
