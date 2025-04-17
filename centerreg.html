@@ -1,274 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisation/Center Registration Form</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        /* Fallback gradient */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom right, #f3e7fa, #e0e7ff);
-            z-index: -1;
-            display: none;
-        }
-        /* Show fallback if image fails */
-        body.no-image::before {
-            display: block;
-        }
-        /* Subtle overlay for mobile */
-        @media (max-width: 767px) {
-            body::after {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.1);
-                z-index: -1;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organisation/Center Registration Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom right, #f3e7fa, #e0e7ff);
+      z-index: -1;
+      display: none;
+    }
+
+    body.no-image::before {
+      display: block;
+    }
+
+    @media (max-width: 767px) {
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: -1;
+      }
+    }
+  </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
-    <div class="bg-gradient-to-b from-indigo-50 to-purple-50 p-4 sm:p-6 lg:p-8 rounded-xl shadow-lg shadow-purple-200 w-full max-w-full mx-auto overflow-x-hidden box-border">
-        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-4 rounded-lg mb-6">
-            <img src="https://via.placeholder.com/600x200" alt="Organisation Banner" class="w-full h-auto rounded-md border-4 border-purple-300">
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-indigo-900">Organisation/Center Registration Form</h2>
-        <form action="/submit" method="POST" enctype="multipart/form-data">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-                <!-- Organisation / Center Name -->
-                <div class="col-span-1 space-y-3 lg:space-y-4">
-                    <label for="org_name" class="block text-xs sm:text-sm font-medium text-indigo-800">Organisation / Center Name</label>
-                    <input type="text" id="org_name" name="org_name" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                </div>
-
-                <!-- Established Date -->
-                <div class="col-span-1 space-y-3 lg:space-y-4">
-                    <label for="established_date" class="block text-xs sm:text-sm font-medium text-indigo-800">When was the Organisation / Center Established</label>
-                    <input type="date" id="established_date" name="established_date" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                </div>
-
-                <!-- Organisation Address -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label for="org_address" class="block text-xs sm:text-sm font-medium text-indigo-800">Organisation / Center Full Address</label>
-                    <textarea id="org_address" name="org_address" rows="4" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white"></textarea>
-                </div>
-
-                <!-- Government Registered -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label class="block text-xs sm:text-sm font-medium text-indigo-800">Is this Organisation / Center Govt. Registered?</label>
-                    <div class="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-4 w-full">
-                        <div class="flex flex-col space-y-2 w-full">
-                            <label class="inline-flex items-center w-full">
-                                <input type="radio" id="govt_registered_yes" name="govt_registered" value="yes" required class="form-radio h-4 w-4 text-purple-600" onchange="toggleRegistrationNumber()">
-                                <span class="ml-2 text-indigo-700 text-xs sm:text-sm">Yes</span>
-                            </label>
-                            <label class="inline-flex items-center w-full">
-                                <input type="radio" id="govt_registered_no" name="govt_registered" value="no" class="form-radio h-4 w-4 text-purple-600" onchange="toggleRegistrationNumber()">
-                                <span class="ml-2 text-indigo-700 text-xs sm:text-sm">No</span>
-                            </label>
-                        </div>
-                        <div id="registration_number_field" class="w-full hidden">
-                            <label for="registration_number" class="block text-xs sm:text-sm font-medium text-indigo-800">Registration Number</label>
-                            <input type="text" id="registration_number" name="registration_number" class="mt-1 block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Coach Name -->
-                <div class="col-span-1 space-y-3 lg:space-y-4">
-                    <label for="coach_name" class="block text-xs sm:text-sm font-medium text-indigo-800">Organisation / Center Coach Name</label>
-                    <input type="text" id="coach_name" name="coach_name" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                </div>
-
-                <!-- Coach Contact Number -->
-                <div class="col-span-1 space-y-3 lg:space-y-4">
-                    <label for="coach_contact" class="block text-xs sm:text-sm font-medium text-indigo-800">Coach Contact No</label>
-                    <input type="tel" id="coach_contact" name="coach_contact" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                </div>
-
-                <!-- Coach Address -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label for="coach_address" class="block text-xs sm:text-sm font-medium text-indigo-800">Address of Coach</label>
-                    <textarea id="coach_address" name="coach_address" rows="4" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white"></textarea>
-                </div>
-
-                <!-- Total Number of Students -->
-                <div class="col-span-1 space-y-3 lg:space-y-4">
-                    <label for="total_students" class="block text-xs sm:text-sm font-medium text-indigo-800">Total Number of Students</label>
-                    <input type="number" id="total_students" name="total_students" min="0" required class="block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                </div>
-
-                <!-- Previously Conducted Exam -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label class="block text-xs sm:text-sm font-medium text-indigo-800">The Organisation / Center had previously conducted exam?</label>
-                    <div class="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-4 w-full">
-                        <div class="flex flex-col space-y-2 w-full">
-                            <label class="inline-flex items-center w-full">
-                                <input type="radio" id="exam_conducted_yes" name="exam_conducted" value="yes" required class="form-radio h-4 w-4 text-purple-600" onchange="toggleExamYears()">
-                                <span class="ml-2 text-indigo-700 text-xs sm:text-sm">Yes</span>
-                            </label>
-                            <label class="inline-flex items-center w-full">
-                                <input type="radio" id="exam_conducted_no" name="exam_conducted" value="no" class="form-radio h-4 w-4 text-purple-600" onchange="toggleExamYears()">
-                                <span class="ml-2 text-indigo-700 text-xs sm:text-sm">No</span>
-                            </label>
-                        </div>
-                        <div id="exam_years_field" class="w-full hidden">
-                            <label for="exam_years" class="block text-xs sm:text-sm font-medium text-indigo-800">How many years?</label>
-                            <input type="number" id="exam_years" name="exam_years" min="0" class="mt-1 block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-white">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Upload Photo of Coach (Drag-and-Drop) -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label for="coach_photo" class="block text-xs sm:text-sm font-medium text-indigo-800">Upload Photo of Coach</label>
-                    <div id="coach_photo_drop" class="w-full p-4 border-2 border-dashed border-purple-400 rounded-md bg-purple-100 text-center hover:bg-purple-200 transition-colors">
-                        <p class="text-indigo-700 text-xs sm:text-sm">Drag and drop an image here or click to select</p>
-                        <input type="file" id="coach_photo" name="coach_photo" accept="image/*" required class="hidden">
-                    </div>
-                    <div id="coach_photo_preview" class="mt-2 hidden">
-                        <img src="" alt="Coach Photo Preview" class="w-full h-auto rounded-md border-2 border-purple-300">
-                    </div>
-                </div>
-
-                <!-- Upload Organisation / Center Logo (Drag-and-Drop) -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label for="org_logo" class="block text-xs sm:text-sm font-medium text-indigo-800">Upload Organisation / Center Logo</label>
-                    <div id="org_logo_drop" class="w-full p-4 border-2 border-dashed border-purple-400 rounded-md bg-purple-100 text-center hover:bg-purple-200 transition-colors">
-                        <p class="text-indigo-700 text-xs sm:text-sm">Drag and drop an image here or click to select</p>
-                        <input type="file" id="org_logo" name="org_logo" accept="image/*" required class="hidden">
-                    </div>
-                    <div id="org_logo_preview" class="mt-2 hidden">
-                        <img src="" alt="Logo Preview" class="w-full h-auto rounded-md border-2 border-purple-300">
-                    </div>
-                </div>
-
-                <!-- Declaration -->
-                <div class="col-span-2 space-y-3 lg:space-y-4">
-                    <label class="inline-flex items-start w-full">
-                        <input type="checkbox" id="declaration" name="declaration" required class="form-checkbox h-5 w-5 text-purple-600 mt-1">
-                        <span class="ml-2 text-xs sm:text-sm text-indigo-700">I certify that the information I have given on the form & the documents are true as per best of my knowledge. If the authority found any mismatch, they can cancel my candidature anytime & I will be liable for that.</span>
-                    </label>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="col-span-2 text-center space-y-3 lg:space-y-4">
-                    <button type="submit" class="inline-block w-full bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">Submit</button>
-                </div>
-            </div>
-        </form>
+  <div class="bg-gradient-to-b from-indigo-50 to-purple-50 p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-6xl mx-auto overflow-x-hidden">
+    
+    <!-- Banner -->
+    <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-4 rounded-lg mb-6">
+      <img src="https://via.placeholder.com/600x200" alt="Organisation Banner" class="w-full h-auto rounded-md border-4 border-purple-300" />
     </div>
 
-    <script>
-        // Toggle Registration Number Field
-        function toggleRegistrationNumber() {
-            const yesRadio = document.getElementById('govt_registered_yes');
-            const registrationField = document.getElementById('registration_number_field');
-            registrationField.classList.toggle('hidden', !yesRadio.checked);
-            if (yesRadio.checked) {
-                document.getElementById('registration_number').setAttribute('required', 'required');
-            } else {
-                document.getElementById('registration_number').removeAttribute('required');
-            }
+    <!-- Heading -->
+    <h2 class="text-3xl font-bold text-center text-indigo-900 mb-6">Organisation/Center Registration Form</h2>
+
+    <!-- Form -->
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Org Name -->
+        <div>
+          <label for="org_name" class="block text-sm font-medium text-indigo-800">Organisation / Center Name</label>
+          <input type="text" id="org_name" name="org_name" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring focus:ring-purple-500 bg-white" />
+        </div>
+
+        <!-- Established Date -->
+        <div>
+          <label for="established_date" class="block text-sm font-medium text-indigo-800">Established Date</label>
+          <input type="date" id="established_date" name="established_date" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring focus:ring-purple-500 bg-white" />
+        </div>
+
+        <!-- Address -->
+        <div class="lg:col-span-2">
+          <label for="org_address" class="block text-sm font-medium text-indigo-800">Full Address</label>
+          <textarea id="org_address" name="org_address" rows="4" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring focus:ring-purple-500 bg-white"></textarea>
+        </div>
+
+        <!-- Govt Registered -->
+        <div class="lg:col-span-2">
+          <label class="block text-sm font-medium text-indigo-800 mb-2">Is the Organisation Govt. Registered?</label>
+          <div class="flex flex-col lg:flex-row gap-4">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="govt_registered" value="yes" id="govt_registered_yes" required onchange="toggleRegistrationNumber()" class="text-purple-600" />
+              <span class="text-indigo-700 text-sm">Yes</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="govt_registered" value="no" id="govt_registered_no" onchange="toggleRegistrationNumber()" class="text-purple-600" />
+              <span class="text-indigo-700 text-sm">No</span>
+            </label>
+            <div id="registration_number_field" class="hidden flex-1">
+              <label for="registration_number" class="block text-sm font-medium text-indigo-800">Registration Number</label>
+              <input type="text" id="registration_number" name="registration_number" class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm bg-white" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Coach Name -->
+        <div>
+          <label for="coach_name" class="block text-sm font-medium text-indigo-800">Coach Name</label>
+          <input type="text" id="coach_name" name="coach_name" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm bg-white" />
+        </div>
+
+        <!-- Coach Contact -->
+        <div>
+          <label for="coach_contact" class="block text-sm font-medium text-indigo-800">Coach Contact No</label>
+          <input type="tel" id="coach_contact" name="coach_contact" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm bg-white" />
+        </div>
+
+        <!-- Coach Address -->
+        <div class="lg:col-span-2">
+          <label for="coach_address" class="block text-sm font-medium text-indigo-800">Coach Address</label>
+          <textarea id="coach_address" name="coach_address" rows="4" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm bg-white"></textarea>
+        </div>
+
+        <!-- Students -->
+        <div>
+          <label for="total_students" class="block text-sm font-medium text-indigo-800">Total Students</label>
+          <input type="number" id="total_students" name="total_students" min="0" required class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm bg-white" />
+        </div>
+
+        <!-- Exam Conducted -->
+        <div class="lg:col-span-2">
+          <label class="block text-sm font-medium text-indigo-800 mb-2">Has the Organisation conducted exams before?</label>
+          <div class="flex flex-col lg:flex-row gap-4">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="exam_conducted" value="yes" id="exam_conducted_yes" required onchange="toggleExamYears()" class="text-purple-600" />
+              <span class="text-indigo-700 text-sm">Yes</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="exam_conducted" value="no" id="exam_conducted_no" onchange="toggleExamYears()" class="text-purple-600" />
+              <span class="text-indigo-700 text-sm">No</span>
+            </label>
+            <div id="exam_years_field" class="hidden flex-1">
+              <label for="exam_years" class="block text-sm font-medium text-indigo-800">How many years?</label>
+              <input type="number" id="exam_years" name="exam_years" min="0" class="mt-1 w-full p-2 border border-purple-300 rounded-md shadow-sm bg-white" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Coach Photo Upload -->
+        <div class="lg:col-span-2">
+          <label class="block text-sm font-medium text-indigo-800">Upload Coach Photo</label>
+          <div id="coach_photo_drop" class="cursor-pointer p-4 border-2 border-dashed border-purple-400 rounded-md bg-purple-100 text-center hover:bg-purple-200 transition">
+            <p class="text-sm text-indigo-700">Drag & drop or click to select</p>
+            <input type="file" id="coach_photo" name="coach_photo" accept="image/*" required class="hidden" />
+          </div>
+          <div id="coach_photo_preview" class="hidden mt-2">
+            <img src="" class="w-full h-auto rounded-md border-2 border-purple-300" />
+          </div>
+        </div>
+
+        <!-- Org Logo Upload -->
+        <div class="lg:col-span-2">
+          <label class="block text-sm font-medium text-indigo-800">Upload Organisation Logo</label>
+          <div id="org_logo_drop" class="cursor-pointer p-4 border-2 border-dashed border-purple-400 rounded-md bg-purple-100 text-center hover:bg-purple-200 transition">
+            <p class="text-sm text-indigo-700">Drag & drop or click to select</p>
+            <input type="file" id="org_logo" name="org_logo" accept="image/*" required class="hidden" />
+          </div>
+          <div id="org_logo_preview" class="hidden mt-2">
+            <img src="" class="w-full h-auto rounded-md border-2 border-purple-300" />
+          </div>
+        </div>
+
+        <!-- Declaration -->
+        <div class="lg:col-span-2">
+          <label class="flex items-start gap-2">
+            <input type="checkbox" id="declaration" name="declaration" required class="h-5 w-5 text-purple-600 mt-1" />
+            <span class="text-sm text-indigo-700">I certify that all provided information is true and I accept responsibility for any mismatches.</span>
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <div class="lg:col-span-2 text-center">
+          <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 transition">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function toggleRegistrationNumber() {
+      const show = document.getElementById('govt_registered_yes').checked;
+      const field = document.getElementById('registration_number_field');
+      field.classList.toggle('hidden', !show);
+      document.getElementById('registration_number').required = show;
+    }
+
+    function toggleExamYears() {
+      const show = document.getElementById('exam_conducted_yes').checked;
+      const field = document.getElementById('exam_years_field');
+      field.classList.toggle('hidden', !show);
+      document.getElementById('exam_years').required = show;
+    }
+
+    function setupDragAndDrop(dropId, inputId, previewId) {
+      const dropZone = document.getElementById(dropId);
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      const img = preview.querySelector('img');
+
+      dropZone.addEventListener('dragover', e => {
+        e.preventDefault();
+        dropZone.classList.add('bg-purple-200');
+      });
+
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('bg-purple-200');
+      });
+
+      dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.classList.remove('bg-purple-200');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          input.files = files;
+          const reader = new FileReader();
+          reader.onload = () => {
+            img.src = reader.result;
+            preview.classList.remove('hidden');
+          };
+          reader.readAsDataURL(files[0]);
         }
+      });
 
-        // Toggle Exam Years Field
-        function toggleExamYears() {
-            const yesRadio = document.getElementById('exam_conducted_yes');
-            const examYearsField = document.getElementById('exam_years_field');
-            examYearsField.classList.toggle('hidden', !yesRadio.checked);
-            if (yesRadio.checked) {
-                document.getElementById('exam_years').setAttribute('required', 'required');
-            } else {
-                document.getElementById('exam_years').removeAttribute('required');
-            }
+      dropZone.addEventListener('click', () => input.click());
+
+      input.addEventListener('change', () => {
+        if (input.files.length > 0) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            img.src = reader.result;
+            preview.classList.remove('hidden');
+          };
+          reader.readAsDataURL(input.files[0]);
         }
+      });
+    }
 
-        // Drag-and-Drop Functionality
-        function setupDragAndDrop(dropZoneId, inputId, previewId) {
-            const dropZone = document.getElementById(dropZoneId);
-            const fileInput = document.getElementById(inputId);
-            const preview = document.getElementById(previewId);
-            const previewImg = preview.querySelector('img');
-
-            // Handle drag events
-            dropZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('bg-purple-200');
-            });
-
-            dropZone.addEventListener('dragenter', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('bg-purple-200');
-            });
-
-            dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('bg-purple-200');
-            });
-
-            dropZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('bg-purple-200');
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    fileInput.files = files;
-                    previewFile(files[0], preview, previewImg);
-                }
-            });
-
-            // Handle click to open file dialog
-            dropZone.addEventListener('click', () => {
-                fileInput.click();
-            });
-
-            // Handle file selection via input
-            fileInput.addEventListener('change', () => {
-                if (fileInput.files.length > 0) {
-                    previewFile(fileInput.files[0], preview, previewImg);
-                }
-            });
-        }
-
-        // Preview uploaded image
-        function previewFile(file, preview, previewImg) {
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    previewImg.src = e.target.result;
-                    preview.classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Initialize drag-and-drop for both upload fields
-        setupDragAndDrop('coach_photo_drop', 'coach_photo', 'coach_photo_preview');
-        setupDragAndDrop('org_logo_drop', 'org_logo', 'org_logo_preview');
-
-        // Fallback for background image failure
-        const body = document.body;
-        const img = new Image();
-        img.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';
-        img.onerror = () => {
-            body.classList.add('no-image');
-        };
-    </script>
+    setupDragAndDrop('coach_photo_drop', 'coach_photo', 'coach_photo_preview');
+    setupDragAndDrop('org_logo_drop', 'org_logo', 'org_logo_preview');
+  </script>
 </body>
 </html>
