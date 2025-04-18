@@ -126,6 +126,14 @@
         </div>
       </div>
     </nav>
+    <section class="tempBanner">
+      <div id="banner" class="fixed hidden  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%]   h-[50%] md:h-[70%]  bg-cover bg-center text-white p-4 text-center shadow-lg z-50 rounded-lg" style="background-image: url('/images/3.jpg');">
+   <button class="absolute top-0.5 right-1 hover:bg-opacity-75 text-white bg-black text-lg rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center cursor-pointer transition-all duration-200" onclick="closeBanner()">X</button>
+   <div class="mt-2 text-base sm:text-lg text-shadow">
+    
+   </div>
+ </div>
+    </section>
 
     <section>
       <div
@@ -148,7 +156,7 @@
             class="slide h-full w-full bg-cover bg-center"
             style="background-image: url('images/13.jpg')"
           ></div>
-          <div class="absolute inset-0 bg-black opacity-50"></div>
+          <div class="absolute inset-0 bg-black opacity-30"></div>
         </div>
 
         <div
@@ -361,6 +369,24 @@
         </div>
       </div>
     </footer>
+
+     <script>
+
+      function closeBanner() {
+       const banner = document.getElementById('banner');
+       banner.classList.add('hidden');
+       sessionStorage.setItem('bannerClosed', 'true'); // Mark banner as closed for the session
+     }
+ 
+     // Check if banner should be shown on page load
+     window.onload = function() {
+       const bannerClosed = sessionStorage.getItem('bannerClosed');
+       if (!bannerClosed) {
+         const banner = document.getElementById('banner');
+         banner.classList.remove('hidden'); // Show banner on first load
+       }
+     };
+     </script>
 
     <script src="scripts.js"></script>
   </body>
