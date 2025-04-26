@@ -12,7 +12,7 @@ form.addEventListener("submit", function (e) {
 
   console.log(JSON.stringify(formData));
 
-  fetch("https://script.google.com/macros/s/AKfycby7aG9dubnyc7L0oiasHNyHM-NAqax0wfXrkLtOmhS0achZq9mskqqJW5IYxXYAwTaDsQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxTKTEZozNtpFL9c3lxY4oLVVMXpCDp_zsLyYbFNtJ7RchSMG4s8j1mSvzJ7iC-c8gkgw/exec", {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {
