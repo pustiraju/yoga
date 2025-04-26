@@ -1,5 +1,6 @@
 
 const form = document.getElementById("myForm");
+const success = document.getElementById("success");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -21,9 +22,12 @@ form.addEventListener("submit", function (e) {
     }
   })
   .then((res) => {
-   alert("Message Sent Sucessfully")
-   
     form.reset();
+   success.classList.remove("hidden")
+   setTimeout(() => {
+    success.classList.add("hidden");
+  }, 5000);
+    
   })
   .catch(error => {
     alert("Something went wrong. Please try again.");
