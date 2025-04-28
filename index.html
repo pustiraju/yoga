@@ -143,32 +143,45 @@
     </section>
 
     <section>
-      <div
-        class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden"
-      >
+      <div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
         <div class="absolute inset-0 slideshow">
-          <div
-            class="slide h-full w-full bg-cover bg-center"
-            style="background-image: url('images/1.jpg')"
-          ></div>
-          <div
-            class="slide h-full w-full bg-cover bg-center"
-            style="background-image: url('images/4.jpg')"
-          ></div>
-          <div
-            class="slide h-full w-full bg-cover bg-center"
-            style="background-image: url('images/3.jpg')"
-          ></div>
-          <div
-            class="slide h-full w-full bg-cover bg-center"
-            style="background-image: url('images/13.jpg')"
-          ></div>
+          <!-- Desktop Images -->
+          <div class="hidden md:block h-full w-full">
+            <div
+              class="slide h-full w-full bg-cover bg-center"
+              style="background-image: url('images/1.jpg')"
+            ></div>
+            <div
+              class="slide h-full w-full bg-cover bg-center"
+              style="background-image: url('images/4.jpg')"
+            ></div>
+            <div
+              class="slide h-full w-full bg-cover bg-center"
+              style="background-image: url('images/3.jpg')"
+            ></div>
+            <div
+              class="slide h-full w-full bg-cover bg-center"
+              style="background-image: url('images/13.jpg')"
+            ></div>
+          </div>
+    
+          <!-- Mobile Images -->
+          <div class="block md:hidden h-full w-full">
+            <div
+              class="slide h-full w-full bg-cover bg-center"
+              style="background-image: url('images/mobile1.jpg')"
+            ></div>
+            <div
+              class="slide h-full w-full bg-cover bg-center"
+              style="background-image: url('images/mobile2.jpg')"
+            ></div>
+          </div>
+    
+          <!-- Dark overlay -->
           <div class="absolute inset-0 bg-black opacity-30"></div>
         </div>
-
-        <div
-          class="relative flex flex-col justify-center items-center h-full text-center"
-        >
+    
+        <div class="relative flex flex-col justify-center items-center h-full text-center">
           <h1 class="text-5xl font-bold leading-tight mb-4 text-cyan-300">
             Welcome to <b class="text-red-400">Yoga Samadhan</b>
           </h1>
@@ -184,6 +197,7 @@
         </div>
       </div>
     </section>
+    
 
     <section>
       <div
