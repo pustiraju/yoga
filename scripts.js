@@ -30,18 +30,27 @@ window.addEventListener("resize", () => {
 // js for nav ends
 
 // homepage image slider
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelectorAll(".slide");
-  let currentSlide = 0;
-  function showNextSlide() {
-    slides[currentSlide].classList.remove("active");
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
+
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
   }
-  slides[currentSlide].classList.add("active");
-  setInterval(showNextSlide, 5000);
-});
-// homepage image slider ends
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  // Initial display
+  showSlide(current);
+
+  // Change every 5 seconds
+  setInterval(nextSlide, 5000);
+
 
 
 //gallery js starts here

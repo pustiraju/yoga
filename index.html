@@ -22,7 +22,7 @@
   </head>
 
   <body>
-    <nav class="bg-yellow-500 fixed w-full z-10">
+    <nav class="bg-yellow-500 fixed w-full z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex flex-shrink-0">
@@ -60,8 +60,8 @@
                 >Contact</a
               >
               <a
-                href="/index.html"
-                class="bg-gray-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-900 transition-colors"
+                href="/yscb.html"
+                class="bg-yellow-400 border border-red-800 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 hover:text-white  transition-colors"
                 >YSCB</a
               >
             </div>
@@ -119,9 +119,9 @@
             >Contact</a
           >
           <a
-            href="/index.html"
-            class="bg-gray-800 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900 transition-colors"
-            >Login</a
+            href="/yscb.html"
+            class="bg-gray-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900 transition-colors"
+            ><p class="hidden md:block">YSCB</p><strong class="md:hidden hover:text-white">YOGA SAMADHAN CERTIFICATION BOARD</strong> </a
           >
         </div>
       </div>
@@ -144,59 +144,45 @@
 
     <section>
       <div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
-        <div class="absolute inset-0 slideshow">
+        
+        <!-- Background Slideshow -->
+        <div class="absolute inset-0 slideshow z-0">
           <!-- Desktop Images -->
-          <div class="hidden md:block h-full w-full">
-            <div
-              class="slide h-full w-full bg-cover bg-center"
-              style="background-image: url('images/1.jpg')"
-            ></div>
-            <div
-              class="slide h-full w-full bg-cover bg-center"
-              style="background-image: url('images/4.jpg')"
-            ></div>
-            <div
-              class="slide h-full w-full bg-cover bg-center"
-              style="background-image: url('images/3.jpg')"
-            ></div>
-            <div
-              class="slide h-full w-full bg-cover bg-center"
-              style="background-image: url('images/13.jpg')"
-            ></div>
+          <div class=" h-full w-full">
+            <div class="slide h-full w-full bg-cover bg-center absolute inset-0 opacity-0 transition-opacity ease-in-out duration-1000" style="background-image: url('images/1.jpg');"></div>
+            <div class="slide h-full w-full bg-cover bg-center absolute inset-0 opacity-0 transition-opacity ease-in-out duration-1000" style="background-image: url('images/4.jpg');"></div>
+            <div class="slide h-full w-full bg-cover bg-center absolute inset-0 opacity-0 transition-opacity ease-in-out duration-1000" style="background-image: url('images/3.jpg');"></div>
+            <div class="slide h-full w-full bg-cover bg-center absolute inset-0 opacity-0 transition-opacity ease-in-out duration-1000" style="background-image: url('images/13.jpg');"></div>
           </div>
     
-          <!-- Mobile Images -->
+          <!-- Optional: Mobile Images -->
+          <!--
           <div class="block md:hidden h-full w-full">
-            <div
-              class="slide h-full w-full bg-cover bg-center"
-              style="background-image: url('images/mobile1.jpg')"
-            ></div>
-            <div
-              class="slide h-full w-full bg-cover bg-center"
-              style="background-image: url('images/mobile2.jpg')"
-            ></div>
+            <div class="slide h-full w-full bg-cover bg-center absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-image: url('images/');"></div>
+            <div class="slide h-full w-full bg-cover bg-center absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-image: url('images/mobile2.jpg');"></div>
           </div>
+          -->
     
-          <!-- Dark overlay -->
-          <div class="absolute inset-0 bg-black opacity-30"></div>
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-black opacity-40"></div>
         </div>
     
-        <div class="relative flex flex-col justify-center items-center h-full text-center">
+        <!-- Foreground Content -->
+        <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
           <h1 class="text-5xl font-bold leading-tight mb-4 text-cyan-300">
             Welcome to <b class="text-red-400">Yoga Samadhan</b>
           </h1>
           <p class="text-lg text-cyan-200 mb-8">
-            We provide yoga treatment, courses, physiotherapy, and teacher
-            training for holistic wellness.
+            We provide yoga treatment, courses, physiotherapy, and teacher training for holistic wellness.
           </p>
-          <a
-            href="/services.html"
-            class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
-            >Start Your Wellness Journey</a
-          >
+          <a href="/services.html"
+             class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+             Start Your Wellness Journey
+          </a>
         </div>
       </div>
     </section>
+    
     
 
     <section>
