@@ -116,16 +116,18 @@
       </div>
     </nav>
 
-    <section id="home" class="py-20 text-center bg-white bg-opacity-80 relative">
-        <div class="slider-image" style="background-image: url(/images/21.jpeg);"></div>
-        <div class="slider-image" style="background-image: url(/images/24.jpeg);"></div>
-        <div class="slider-image" style="background-image: url(/images/28.jpg);"></div>
+    <section id="home" class="py-20 text-center bg-white bg-opacity-80 relative" style="background-image: url('/images/21.jpeg'); background-size: cover; background-position: center;">
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-green-600">Fun Yoga for Kids!</h2>
-            <p class="text-lg mb-6 max-w-2xl mx-auto">Join Yoga Samadhan’s YCB-approved yoga program for Classes 1-8 students, bringing fitness, focus, and fun to young minds, authorized by the Ministry of AYUSH, India.</p>
-            <a href="#program" class="bg-green-500 text-white py-2 px-6 rounded-full hover:bg-green-600 transition">Discover Yoga</a>
+            <p class="text-lg mb-6 max-w-2xl mx-auto">
+                Join Yoga Samadhan’s YCB-approved yoga program for Classes 1-8 students, bringing fitness, focus, and fun to young minds, authorized by the Ministry of AYUSH, India.
+            </p>
+            <a href="#program" class="bg-green-500 text-white py-2 px-6 rounded-full hover:bg-green-600 transition">
+                Discover Yoga
+            </a>
         </div>
     </section>
+    
     
     <section id="benefits" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
@@ -286,22 +288,7 @@
         </div>
       </div>
     </footer>
-    const images = document.querySelectorAll('.slider-image');
-        let currentImage = 0;
-
-        function showNextImage() {
-            images[currentImage].classList.remove('active');
-            currentImage = (currentImage + 1) % images.length;
-            images[currentImage].classList.add('active');
-        }
-
-        // Initialize first image
-        images[currentImage].classList.add('active');
-
-        // Change image every 5 seconds
-        setInterval(showNextImage, 5000);
-  
-     
+   
     <script src="scripts.js"></script>
   </body>
 </html>
