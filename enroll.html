@@ -1,293 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <title>Yoga Samadhan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="m-0">
-    <nav class="bg-yellow-500 fixed w-full z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex flex-shrink-0">
-            <a href="#" class="text-gray-800 text-2xl font-bold md:mt-[3px]"
-              ><img src="/images/logo.png" alt=""
-            /></a>
-            <h3 class="px-3 py-3 font-bold md:text-2xl">Yoga Samadhan</h3>
-          </div>
 
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-center space-x-4">
-              <a
-                href="/"
-                class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >Home</a
-              >
-              <a
-                href="/services.html"
-                class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >Services</a
-              >
-              <a
-                href="/courses"
-                class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >Courses</a
-              >
-              <a
-                href="/gallery"
-                class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >Gallery</a
-              >
-              <a
-                href="/contact"
-                class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >Contact</a
-              >
-              <a
-                href="/yscb"
-                class="bg-yellow-400 border border-red-800 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 hover:text-white  transition-colors"
-                >YSCB</a
-              >
-            </div>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Yoga Samadhan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-          <div class="md:hidden">
-            <button
-              type="button"
-              id="mobileMenuButton"
-              class="text-gray-800 hover:bg-yellow-600 inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+<body class="m-0">
+  <nav class="bg-yellow-500 fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex flex-shrink-0">
+          <a href="#" class="text-gray-800 text-2xl font-bold md:mt-[3px]"><img src="/images/logo.png" alt="" /></a>
+          <h3 class="px-3 py-3 font-bold md:text-2xl">Yoga Samadhan</h3>
+        </div>
+
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-center space-x-4">
+            <a href="/"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+            <a href="/services.html"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+            <a href="/courses"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Courses</a>
+            <a href="/gallery"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Gallery</a>
+            <a href="/contact"
+              class="text-gray-800 hover:bg-yellow-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+            <a href="/yscb"
+              class="bg-yellow-400 border border-red-800 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 hover:text-white  transition-colors">YSCB</a>
           </div>
         </div>
-      </div>
 
-      <div class="md:hidden hidden" id="mobileMenu">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <a
-            href="/"
-            class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Home</a
-          >
-          <a
-            href="/services"
-            class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Services</a
-          >
-          <a
-            href="/courses"
-            class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Courses</a
-          >
-          <a
-            href="/gallery"
-            class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Gallery</a
-          >
-          <a
-            href="/contact"
-            class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Contact</a
-          >
-          <a
-            href="/yscb"
-            class="bg-gray-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900 transition-colors"
-            ><p class="hidden md:block">YSCB</p><strong class="md:hidden hover:text-white">YOGA SAMADHAN CERTIFICATION BOARD</strong> </a
-          >
+        <div class="md:hidden">
+          <button type="button" id="mobileMenuButton"
+            class="text-gray-800 hover:bg-yellow-600 inline-flex items-center justify-center p-2 rounded-md focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
-      </div>
-  </nav>
-    <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-md sm:max-w-lg mx-auto pt-20 sm:pt-24 mt-0 mb-8 hover:shadow-3xl transition duration-300">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-6">Course Enrollment Form</h2>
-      <!-- Success message div, initially hidden -->
-      
-      <form id="enrollmentForm" action="#" method="POST">
-        <div class="mb-4 sm:mb-5">
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            placeholder="Enter your full name" 
-            class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base" 
-            required 
-          />
-        </div>
-        <div class="mb-4 sm:mb-5">
-          <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-          <input 
-            type="tel" 
-            id="phone" 
-            name="phone" 
-            placeholder="Enter your phone number" 
-            pattern="[0-9]{10}" 
-            class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base" 
-            required 
-          />
-        </div>
-        <div class="mb-4 sm:mb-5">
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            placeholder="Enter your email" 
-            class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base" 
-            required 
-          />
-        </div>
-        <div class="mb-4 sm:mb-5">
-          <label for="occupation" class="block text-sm font-medium text-gray-700 mb-2">Occupation</label>
-          <input 
-            type="text" 
-            id="occupation" 
-            name="occupation" 
-            placeholder="Enter your occupation" 
-            class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base" 
-            required 
-          />
-        </div>
-        <div class="mb-4 sm:mb-5">
-          <label for="qualification" class="block text-sm font-medium text-gray-700 mb-2">Last Qualification</label>
-          <select 
-            id="qualification" 
-            name="qualification" 
-            class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base" 
-            required
-          >
-            <option value="" disabled selected>Select your qualification</option>
-            <option value="secondary">School (Secondary Education)</option>
-            <option value="high-school">High School</option>
-            <option value="bachelor">Bachelor's Degree</option>
-            <option value="master">Master's Degree</option>
-            <option value="phd">PhD</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <button 
-          type="submit" 
-          class="w-full p-3 bg-yellow-500 text-white text-base sm:text-lg font-medium rounded-lg hover:bg-yellow-600 transition duration-300"
-        >
-          Submit
-        </button>
-      </form>
-      <div id="successMessage" class="hidden text-center text-green-600 font-medium mb-4 text-sm sm:text-base">
-        Form submitted successfully!
       </div>
     </div>
-    <footer class="bg-yellow-500 w-full">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="flex flex-col items-center md:items-start">
-            <div class="flex items-center mb-4">
-              <a href="#" class="text-gray-800 text-2xl font-bold"
-                ><img
-                  src="/images/logo.png"
-                  alt="Yoga Samadhan Logo"
-                  class="h-10 w-auto"
-              /></a>
-              <h3 class="px-3 font-bold text-xl text-gray-800">
-                Yoga Samadhan
-              </h3>
-            </div>
-            <p class="text-gray-800 text-sm text-center md:text-left">
-              Experience holistic wellness through our integrated approach
-              combining yoga treatment, physiotherapy, wellness courses, and
-              certified teacher training. Our programs support physical healing,
-              mental clarity, and inner peace.
-            </p>
-          </div>
 
-          <div class="flex flex-col items-center md:items-start">
-            <h4 class="text-gray-800 font-bold text-lg mb-4">Quick Links</h4>
-            <a
-              href="/index.html"
-              class="text-gray-800 hover:text-white transition-colors mb-2"
-              >Home</a
-            >
-            <a
-              href="/services.html"
-              class="text-gray-800 hover:text-white transition-colors mb-2"
-              >Services</a
-            >
-            <a
-              href="/courses.html"
-              class="text-gray-800 hover:text-white transition-colors mb-2"
-              >Courses</a
-            >
-            <a
-              href="/gallery.html"
-              class="text-gray-800 hover:text-white transition-colors mb-2"
-              >Gallery</a
-            >
-            <a
-              href="/contact.html"
-              class="text-gray-800 hover:text-white transition-colors"
-              >Contact</a
-            >
-          </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="/"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="/services"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+        <a href="/courses"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Courses</a>
+        <a href="/gallery"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+        <a href="/contact"
+          class="text-gray-800 hover:bg-yellow-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        <a href="/yscb"
+          class="bg-gray-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900 transition-colors">
+          <p class="hidden md:block">YSCB</p><strong class="md:hidden hover:text-white">YOGA SAMADHAN CERTIFICATION
+            BOARD</strong>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div
+    class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-md sm:max-w-lg mx-auto pt-20 sm:pt-24 mt-0 mb-8 hover:shadow-3xl transition duration-300">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-6">Course Enrollment Form</h2>
+    <!-- Success message div, initially hidden -->
 
-          <div class="flex flex-col items-center md:items-start">
-            <h4 class="text-gray-800 font-bold text-lg mb-4">Contact Us</h4>
-            <p class="text-gray-800 text-sm mb-2">
-              Email:
-              <a
-                href="mailto:info@yogasamadhan.com?subject=Yoga%20Class%20Inquiry"
-                class="text-blue-600 hover:underline"
-                >suman.gbn123@gmail.com</a
-              >
-            </p>
-            <p class="text-gray-800 text-sm mb-2">
-              Phone:
-              <a href="tel:+919733041744" class="text-blue-600 hover:underline"
-                >+919733041744</a
-              >
-            </p>
-            <p class="text-gray-800 text-sm">
-              <b class="text-cyan-700">Tollygunge Center:</b> 11A/1 B.L. Ganguli
-              Lane, 33, Tollygunge, Kolkata, West Bengal 700033.
-            </p>
-            <p class="text-gray-800 text-sm">
-              <b class="text-cyan-700">Midnapore Center:</b> Midnapore Railway
-              Station Rd, Bhunia Para, Kotwali, Midnapore, West Bengal 721102
-            </p>
+    <form id="enrollmentForm" action="#" method="POST">
+      <div class="mb-4 sm:mb-5">
+        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name"
+          class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base"
+          required />
+      </div>
+      <div class="mb-4 sm:mb-5">
+        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}"
+          class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base"
+          required />
+      </div>
+      <div class="mb-4 sm:mb-5">
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email"
+          class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base"
+          required />
+      </div>
+      <div class="mb-4 sm:mb-5">
+        <label for="occupation" class="block text-sm font-medium text-gray-700 mb-2">Occupation</label>
+        <input type="text" id="occupation" name="occupation" placeholder="Enter your occupation"
+          class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base"
+          required />
+      </div>
+      <div class="mb-4 sm:mb-5">
+        <label for="qualification" class="block text-sm font-medium text-gray-700 mb-2">Last Qualification</label>
+        <select id="qualification" name="qualification"
+          class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition text-sm sm:text-base"
+          required>
+          <option value="" disabled selected>Select your qualification</option>
+          <option value="secondary">School (Secondary Education)</option>
+          <option value="high-school">High School</option>
+          <option value="bachelor">Bachelor's Degree</option>
+          <option value="master">Master's Degree</option>
+          <option value="phd">PhD</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <button type="submit"
+        class="w-full p-3 bg-yellow-500 text-white text-base sm:text-lg font-medium rounded-lg hover:bg-yellow-600 transition duration-300">
+        Submit
+      </button>
+    </form>
+    <div id="successMessage" class="hidden text-center text-green-600 font-medium mb-4 text-sm sm:text-base">
+      Form submitted successfully!
+    </div>
+  </div>
+  <footer class="bg-yellow-500 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex flex-col items-center md:items-start">
+          <div class="flex items-center mb-4">
+            <a href="#" class="text-gray-800 text-2xl font-bold"><img src="/images/logo.png" alt="Yoga Samadhan Logo"
+                class="h-10 w-auto" /></a>
+            <h3 class="px-3 font-bold text-xl text-gray-800">
+              Yoga Samadhan
+            </h3>
           </div>
+          <p class="text-gray-800 text-sm text-center md:text-left">
+            Experience holistic wellness through our integrated approach
+            combining yoga treatment, physiotherapy, wellness courses, and
+            certified teacher training. Our programs support physical healing,
+            mental clarity, and inner peace.
+          </p>
         </div>
 
-        <div class="mt-8 pt-8 border-t border-yellow-600 text-center">
-          <p class="text-gray-800 text-sm">
-            © 2025 Yoga Samadhan. All rights reserved.
+        <div class="flex flex-col items-center md:items-start">
+          <h4 class="text-gray-800 font-bold text-lg mb-4">Quick Links</h4>
+          <a href="/" class="text-gray-800 hover:text-white transition-colors mb-2">Home</a>
+          <a href="/about" class="text-gray-800 hover:text-white transition-colors mb-2">About</a>
+          <a href="/courses" class="text-gray-800 hover:text-white transition-colors mb-2">Courses</a>
+          <a href="/gallery" class="text-gray-800 hover:text-white transition-colors mb-2">Gallery</a>
+          <a href="/contact" class="text-gray-800 hover:text-white transition-colors">Contact</a>
+        </div>
+
+        <div class="flex flex-col items-center md:items-start">
+          <h4 class="text-gray-800 font-bold text-lg mb-4">Contact Us</h4>
+          <p class="text-gray-800 text-sm mb-2">
+            Email:
+            <a href="mailto:info@yogasamadhan.com?subject=Yoga%20Class%20Inquiry"
+              class="text-blue-600 hover:underline">suman.gbn123@gmail.com</a>
           </p>
-          <p class="text-gray-800 text-sm mt-2">
-            Designed & Developed by
-            <a
-              href="https://github.com/pustiraju"
-              class="hover:text-white transition-colors"
-              >Raju Pusti</a
-            >
+          <p class="text-gray-800 text-sm mb-2">
+            Phone:
+            <a href="tel:+919733041744" class="text-blue-600 hover:underline">+919733041744</a>
+          </p>
+          <p class="text-gray-800 text-sm">
+            <b class="text-cyan-700">Tollygunge Center:</b> 11A/1 B.L. Ganguli
+            Lane, 33, Tollygunge, Kolkata, West Bengal 700033.
+          </p>
+          <p class="text-gray-800 text-sm">
+            <b class="text-cyan-700">Midnapore Center:</b> Midnapore Railway
+            Station Rd, Bhunia Para, Kotwali, Midnapore, West Bengal 721102
           </p>
         </div>
       </div>
-    </footer>
-    <script src="/scripts.js"></script>
-    <script src="/enroll.js"></script>
-  </body>
+
+      <div class="mt-8 pt-8 border-t border-yellow-600 text-center">
+        <p class="text-gray-800 text-sm">
+          © 2025 Yoga Samadhan. All rights reserved.
+        </p>
+        <p class="text-gray-800 text-sm mt-2">
+          Designed & Developed by
+          <a href="https://github.com/pustiraju" class="hover:text-white transition-colors">Raju Pusti</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="/scripts.js"></script>
+  <script src="/enroll.js"></script>
+</body>
+
 </html>
