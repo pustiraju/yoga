@@ -7,46 +7,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
   <title>Organisation/Center Registration Form</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(to bottom right, #f3e7fa, #e0e7ff);
-      z-index: -1;
-      display: none;
-    }
-    body.no-image::before {
-      display: block;
-    }
-    @media (max-width: 767px) {
-      body::after {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.1);
-        z-index: -1;
-      }
-    }
-  </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
-  <div class="bg-gradient-to-b from-indigo-50 to-purple-50 p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-6xl mx-auto overflow-x-hidden">
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-gradient-to-b from-indigo-50 to-purple-50 p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-6xl mx-auto">
     <!-- Banner -->
-    <div class="relative w-full max-w-full h-36 bg-gradient-to-br from-green-600 to-red-600 flex flex-col items-center justify-center text-center rounded-lg shadow-lg mx-auto overflow-hidden">
-      <h1 class="text-6xl font-serif text-yellow-600 drop-shadow-md underline"><b>Yoga Samadhan</b></h1>
+    <div class="relative w-full h-36 bg-gradient-to-br from-green-600 to-red-600 flex flex-col items-center justify-center text-center rounded-lg shadow-lg mx-auto">
+      <h1 class="text-5xl sm:text-6xl font-serif text-yellow-600 drop-shadow-md underline">Yoga Samadhan</h1>
       <p class="text-lg text-amber-100 mt-1"></p>
       <div class="hidden md:block absolute top-1/2 right-10 w-20 h-20 bg-[url('/images/logo.png')] bg-no-repeat bg-center bg-contain opacity-100 -translate-y-1/2"></div>
     </div>
     <!-- Heading -->
-    <h2 class="text-3xl font-bold text-center text-indigo-900 mb-6">Organisation/Center Registration Form</h2>
+    <h2 class="text-2xl sm:text-3xl font-bold text-center text-indigo-900 mb-6">Organisation/Center Registration Form</h2>
     <!-- Form -->
     <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbzns9id0YM4qL4ODc8SmvqmLytnLge6CESY7oW6YJYxRvdk1YFUVWOmWuPsU-K1WdPR/exec" method="POST" enctype="multipart/form-data">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -159,6 +130,9 @@
   </div>
   <!-- Scripts -->
   <script>
+    let isSubmitting = false;
+    let lastSubmissionTime = 0;
+    const DEBOUNCE_MS = 2000;
     function toggleRegistrationNumber() {
       const show = document.getElementById('govt_registered_yes').checked;
       const field = document.getElementById('registration_number_field');
@@ -216,12 +190,22 @@
         }
       });
     }
-    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    const form = document.getElementById('registrationForm');
+    // Remove any existing submit listeners
+    const handler = e => {
       e.preventDefault();
+      e.stopPropagation();
+      const currentTime = Date.now();
+      if (isSubmitting || (currentTime - lastSubmissionTime) < DEBOUNCE_MS) {
+        console.log('Submission blocked: in progress or debounced');
+        return;
+      }
+      isSubmitting = true;
+      lastSubmissionTime = currentTime;
       const submitButton = document.getElementById('submitButton');
       submitButton.disabled = true;
       submitButton.textContent = 'Submitting...';
-      const formData = new FormData(this);
+      const formData = new FormData(form);
       const submissionId = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 9);
       formData.set('submission_id', submissionId);
       console.log('Generated submission_id:', submissionId);
@@ -230,8 +214,7 @@
       if (coachPhoto && coachPhoto.size > 0 && coachPhoto.type.startsWith('image/')) {
         if (coachPhoto.size > 5 * 1024 * 1024) {
           alert('Coach photo is too large (max 5MB).');
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit';
+          resetForm(submitButton);
           return;
         }
         promises.push(fileToBase64(coachPhoto).then(base64 => {
@@ -245,8 +228,7 @@
       if (orgLogo && orgLogo.size > 0 && orgLogo.type.startsWith('image/')) {
         if (orgLogo.size > 5 * 1024 * 1024) {
           alert('Organisation logo is too large (max 5MB).');
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit';
+          resetForm(submitButton);
           return;
         }
         promises.push(fileToBase64(orgLogo).then(base64 => {
@@ -259,10 +241,11 @@
       formData.delete('declaration');
       Promise.all(promises).then(() => {
         console.log('Sending form data:', Object.fromEntries(formData));
-        fetch(this.action, {
+        fetch(form.action, {
           method: 'POST',
           body: new URLSearchParams(formData),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          redirect: 'manual'
         })
           .then(response => {
             console.log('Response status:', response.status);
@@ -272,29 +255,39 @@
             console.log('Server response:', result);
             alert(result);
             if (result.includes('successfully')) {
-              this.reset();
+              form.reset();
               document.getElementById('coach_photo_preview').classList.add('hidden');
               document.getElementById('org_logo_preview').classList.add('hidden');
               document.getElementById('registration_number_field').classList.add('hidden');
               document.getElementById('exam_years_field').classList.add('hidden');
               document.getElementById('exam_years').disabled = true;
             }
-            submitButton.disabled = false;
-            submitButton.textContent = 'Submit';
+            resetForm(submitButton);
           })
           .catch(error => {
             console.error('Fetch error:', error.message);
             alert('Error: ' + error.message);
-            submitButton.disabled = false;
-            submitButton.textContent = 'Submit';
+            resetForm(submitButton);
           });
       }).catch(error => {
         console.error('Promise error:', error.message);
         alert('Error processing files: ' + error.message);
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit';
+        resetForm(submitButton);
       });
-    });
+    };
+    // Ensure single listener
+    form.removeEventListener('submit', handler);
+    form.addEventListener('submit', handler);
+    // Disable default form submission
+    form.onsubmit = e => {
+      e.preventDefault();
+      return false;
+    };
+    function resetForm(submitButton) {
+      isSubmitting = false;
+      submitButton.disabled = false;
+      submitButton.textContent = 'Submit';
+    }
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -307,6 +300,5 @@
     setupDragAndDrop('org_logo_drop', 'org_logo', 'org_logo_preview');
     document.getElementById('exam_years').disabled = true;
   </script>
-<script src="center.js"></script>
 </body>
 </html>
