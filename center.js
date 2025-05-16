@@ -1,6 +1,6 @@
 
   const scriptURL =
-    "https://script.google.com/macros/s/AKfycbwFrGE1swvav-CDhMCdQvY7cfYe4ncwxMWF-yCAQxAGHbNrWVE-lY9MDDP0fkk316AF/exec";
+    "https://script.google.com/macros/s/AKfycbzns9id0YM4qL4ODc8SmvqmLytnLge6CESY7oW6YJYxRvdk1YFUVWOmWuPsU-K1WdPR/exec";
 
   document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault(); // prevent default form submission
