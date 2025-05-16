@@ -266,12 +266,10 @@
           })
           .catch(error => {
             console.error('Fetch error:', error.message);
-            alert('Error: ' + error.message);
             resetForm(submitButton);
           });
       }).catch(error => {
         console.error('Promise error:', error.message);
-        alert('Error processing files: ' + error.message);
         resetForm(submitButton);
       });
     };
