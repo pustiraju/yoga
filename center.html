@@ -224,6 +224,7 @@
       const formData = new FormData(this);
       const submissionId = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 9);
       formData.set('submission_id', submissionId);
+      console.log('Generated submission_id:', submissionId);
       const promises = [];
       const coachPhoto = formData.get('coach_photo');
       if (coachPhoto && coachPhoto.size > 0 && coachPhoto.type.startsWith('image/')) {
@@ -233,7 +234,10 @@
           submitButton.textContent = 'Submit';
           return;
         }
-        promises.push(fileToBase64(coachPhoto).then(base64 => formData.set('coach_photo', base64)));
+        promises.push(fileToBase64(coachPhoto).then(base64 => {
+          formData.set('coach_photo', base64);
+          console.log('Coach photo encoded');
+        }));
       } else {
         formData.delete('coach_photo');
       }
@@ -245,18 +249,27 @@
           submitButton.textContent = 'Submit';
           return;
         }
-        promises.push(fileToBase64(orgLogo).then(base64 => formData.set('org_logo', base64)));
+        promises.push(fileToBase64(orgLogo).then(base64 => {
+          formData.set('org_logo', base64);
+          console.log('Org logo encoded');
+        }));
       } else {
         formData.delete('org_logo');
       }
       formData.delete('declaration');
       Promise.all(promises).then(() => {
+        console.log('Sending form data:', Object.fromEntries(formData));
         fetch(this.action, {
           method: 'POST',
-          body: new URLSearchParams(formData)
+          body: new URLSearchParams(formData),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
-          .then(response => response.text())
+          .then(response => {
+            console.log('Response status:', response.status);
+            return response.text();
+          })
           .then(result => {
+            console.log('Server response:', result);
             alert(result);
             if (result.includes('successfully')) {
               this.reset();
@@ -270,10 +283,16 @@
             submitButton.textContent = 'Submit';
           })
           .catch(error => {
+            console.error('Fetch error:', error.message);
             alert('Error: ' + error.message);
             submitButton.disabled = false;
             submitButton.textContent = 'Submit';
           });
+      }).catch(error => {
+        console.error('Promise error:', error.message);
+        alert('Error processing files: ' + error.message);
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit';
       });
     });
     function fileToBase64(file) {
@@ -286,8 +305,8 @@
     }
     setupDragAndDrop('coach_photo_drop', 'coach_photo', 'coach_photo_preview');
     setupDragAndDrop('org_logo_drop', 'org_logo', 'org_logo_preview');
-    // Initialize exam_years state
     document.getElementById('exam_years').disabled = true;
   </script>
+<script src="center.js"></script>
 </body>
 </html>
