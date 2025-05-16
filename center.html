@@ -144,11 +144,12 @@
       const field = document.getElementById('exam_years_field');
       const input = document.getElementById('exam_years');
       field.classList.toggle('hidden', !show);
-      input.required = show;
       input.disabled = !show;
       if (!show) {
         input.value = '';
-        input.removeAttribute('required'); // Explicitly remove required
+        input.removeAttribute('required');
+      } else {
+        input.setAttribute('required', 'required');
       }
     }
     function setupDragAndDrop(dropId, inputId, previewId) {
@@ -241,9 +242,8 @@
         formData.delete('org_logo');
       }
       formData.delete('declaration');
-      // Ensure exam_years is empty when exam_conducted is no
       if (formData.get('exam_conducted') === 'no') {
-        formData.set('exam_years', '');
+        formData.delete('exam_years');
       }
       Promise.all(promises)
         .then(() => {
