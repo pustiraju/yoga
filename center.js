@@ -1,4 +1,3 @@
-
 document.getElementById('registrationForm').addEventListener('submit', function(e) {
   e.preventDefault();
   fetch(this.action, { method: 'POST', body: new FormData(this) })

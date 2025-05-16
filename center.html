@@ -168,8 +168,15 @@
     function toggleExamYears() {
       const show = document.getElementById('exam_conducted_yes').checked;
       const field = document.getElementById('exam_years_field');
+      const input = document.getElementById('exam_years');
       field.classList.toggle('hidden', !show);
-      document.getElementById('exam_years').required = show;
+      input.required = show;
+      if (!show) {
+        input.value = '';
+        input.disabled = true;
+      } else {
+        input.disabled = false;
+      }
     }
     function setupDragAndDrop(dropId, inputId, previewId) {
       const dropZone = document.getElementById(dropId);
@@ -219,7 +226,7 @@
       formData.set('submission_id', submissionId);
       const promises = [];
       const coachPhoto = formData.get('coach_photo');
-      if (coachPhoto && coachPhoto.size > 0) {
+      if (coachPhoto && coachPhoto.size > 0 && coachPhoto.type.startsWith('image/')) {
         if (coachPhoto.size > 5 * 1024 * 1024) {
           alert('Coach photo is too large (max 5MB).');
           submitButton.disabled = false;
@@ -227,9 +234,11 @@
           return;
         }
         promises.push(fileToBase64(coachPhoto).then(base64 => formData.set('coach_photo', base64)));
+      } else {
+        formData.delete('coach_photo');
       }
       const orgLogo = formData.get('org_logo');
-      if (orgLogo && orgLogo.size > 0) {
+      if (orgLogo && orgLogo.size > 0 && orgLogo.type.startsWith('image/')) {
         if (orgLogo.size > 5 * 1024 * 1024) {
           alert('Organisation logo is too large (max 5MB).');
           submitButton.disabled = false;
@@ -237,6 +246,8 @@
           return;
         }
         promises.push(fileToBase64(orgLogo).then(base64 => formData.set('org_logo', base64)));
+      } else {
+        formData.delete('org_logo');
       }
       formData.delete('declaration');
       Promise.all(promises).then(() => {
@@ -253,6 +264,7 @@
               document.getElementById('org_logo_preview').classList.add('hidden');
               document.getElementById('registration_number_field').classList.add('hidden');
               document.getElementById('exam_years_field').classList.add('hidden');
+              document.getElementById('exam_years').disabled = true;
             }
             submitButton.disabled = false;
             submitButton.textContent = 'Submit';
@@ -274,6 +286,8 @@
     }
     setupDragAndDrop('coach_photo_drop', 'coach_photo', 'coach_photo_preview');
     setupDragAndDrop('org_logo_drop', 'org_logo', 'org_logo_preview');
+    // Initialize exam_years state
+    document.getElementById('exam_years').disabled = true;
   </script>
 </body>
 </html>
