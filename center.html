@@ -152,7 +152,7 @@
         </div>
         <!-- Submit -->
         <div class="lg:col-span-2 text-center">
-          <button type="submit" class="w-full bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 transition">Submit</button>
+          <button type="submit" id="submitButton" class="w-full bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 transition">Submit</button>
         </div>
       </div>
     </form>
@@ -211,12 +211,19 @@
     }
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
       const formData = new FormData(this);
+      const submissionId = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 9);
+      formData.set('submission_id', submissionId);
       const promises = [];
       const coachPhoto = formData.get('coach_photo');
       if (coachPhoto && coachPhoto.size > 0) {
         if (coachPhoto.size > 5 * 1024 * 1024) {
           alert('Coach photo is too large (max 5MB).');
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
           return;
         }
         promises.push(fileToBase64(coachPhoto).then(base64 => formData.set('coach_photo', base64)));
@@ -225,6 +232,8 @@
       if (orgLogo && orgLogo.size > 0) {
         if (orgLogo.size > 5 * 1024 * 1024) {
           alert('Organisation logo is too large (max 5MB).');
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
           return;
         }
         promises.push(fileToBase64(orgLogo).then(base64 => formData.set('org_logo', base64)));
@@ -245,8 +254,14 @@
               document.getElementById('registration_number_field').classList.add('hidden');
               document.getElementById('exam_years_field').classList.add('hidden');
             }
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit';
           })
-          .catch(error => alert("SUBMITTED"));
+          .catch(error => {
+            alert('Error: ' + error.message);
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit';
+          });
       });
     });
     function fileToBase64(file) {
@@ -260,6 +275,5 @@
     setupDragAndDrop('coach_photo_drop', 'coach_photo', 'coach_photo_preview');
     setupDragAndDrop('org_logo_drop', 'org_logo', 'org_logo_preview');
   </script>
-  <script src="center.js"></script>
 </body>
 </html>
